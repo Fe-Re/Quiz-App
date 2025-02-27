@@ -24,7 +24,15 @@ export default function App() {
 
   return (
     <>
-      {questionBoxOpen ? <QuestionBox questionAnswer={questionAnswer} /> : ""}
+      {questionBoxOpen ? (
+        <QuestionBox
+          onSetStartMenuOpen={setStartMenuOpen}
+          onSetQuestionBoxOpen={setQuestionBoxOpen}
+          questionAnswer={questionAnswer}
+        />
+      ) : (
+        ""
+      )}
       {startMenuOpen ? (
         <StartMenu
           onSetCategory={setCategory}

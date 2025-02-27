@@ -1,4 +1,5 @@
-.start-btn {
+.start-btn,
+.end-btn {
   background-color: rgb(71, 126, 173);
   color: #fff;
   padding: 10px 20px;

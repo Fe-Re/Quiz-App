@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import { useState, useMemo } from "react";
 
-export function QuestionBox({ questionAnswer }) {
+export function QuestionBox({
+  questionAnswer,
+  onSetStartMenuOpen,
+  onSetQuestionBoxOpen,
+}) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [IncorrectAnswer, setIncorrectAnswer] = useState(false);
 
@@ -36,6 +40,11 @@ export function QuestionBox({ questionAnswer }) {
     }
   }
 
+  function endQuiz() {
+    onSetStartMenuOpen((prev) => !prev);
+    onSetQuestionBoxOpen((prev) => !prev);
+  }
+
   return (
     <>
       <div className="questionBox">
@@ -64,8 +73,11 @@ export function QuestionBox({ questionAnswer }) {
             {answerOption}
           </div>
         ))}
+        {IncorrectAnswer && <p style={{ color: "red" }}>Incorrect answer</p>}
       </div>
-      {IncorrectAnswer && <p style={{ color: "red" }}>Incorrect answer</p>}
+      <div className="end-btn" onClick={endQuiz}>
+        End
+      </div>
     </>
   );
 }
