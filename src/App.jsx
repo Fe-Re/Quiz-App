@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { QuestionBox } from "./QuestionBox";
-import PropTypes from "prop-types";
+import { StartMenu } from "./StartMenu";
 
 export default function App() {
   const [questionAnswer, setQuestionAnswer] = useState([]);
@@ -23,28 +23,7 @@ export default function App() {
   return (
     <>
       <QuestionBox questionAnswer={questionAnswer} />
-      <CategoriesSelector onSetCategory={setCategory} />
+      <StartMenu onSetCategory={setCategory} />
     </>
-  );
-}
-
-function CategoriesSelector({ onSetCategory }) {
-  function changeCategory(selection) {
-    onSetCategory(selection);
-  }
-
-  CategoriesSelector.propTypes = {
-    onSetCategory: PropTypes.func.isRequired,
-  };
-
-  return (
-    <select onChange={(event) => changeCategory(event.target.value)}>
-      <option value="">Select a category</option>
-      <option value="science">Science</option>
-      <option value="history">History</option>
-      <option value="sport_and_leisure">Sports and leisure</option>
-      <option value="music">Music</option>
-      <option value="geography">Geography</option>
-    </select>
   );
 }
