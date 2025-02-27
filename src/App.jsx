@@ -4,7 +4,9 @@ import { StartMenu } from "./StartMenu";
 
 export default function App() {
   const [questionAnswer, setQuestionAnswer] = useState([]);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("ERROR");
+  const [questionBoxOpen, setQuestionBoxOpen] = useState(false);
+  const [startMenuOpen, setStartMenuOpen] = useState(true);
 
   useEffect(() => {
     fetch(
@@ -22,8 +24,17 @@ export default function App() {
 
   return (
     <>
-      <QuestionBox questionAnswer={questionAnswer} />
-      <StartMenu onSetCategory={setCategory} />
+      {questionBoxOpen ? <QuestionBox questionAnswer={questionAnswer} /> : ""}
+      {startMenuOpen ? (
+        <StartMenu
+          onSetCategory={setCategory}
+          onSetStartMenuOpen={setStartMenuOpen}
+          onSetQuestionBoxOpen={setQuestionBoxOpen}
+          category={category}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 }
