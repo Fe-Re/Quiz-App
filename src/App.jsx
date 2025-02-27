@@ -9,7 +9,7 @@ export default function App() {
   useEffect(() => {
     fetch(
       `https://the-trivia-api.com/v2/questions${
-        category === "" ? "" : `?category=${category}`
+        category === "" ? "" : `?categories=${category}`
       }`
     )
       .then((res) => res.json())
@@ -18,7 +18,7 @@ export default function App() {
         setQuestionAnswer(data);
       })
       .catch((error) => console.error("Fehler beim Laden der Daten:", error));
-  }, []);
+  }, [category]);
 
   return (
     <>
@@ -42,7 +42,7 @@ function CategoriesSelector({ onSetCategory }) {
       <option value="">Select a category</option>
       <option value="science">Science</option>
       <option value="history">History</option>
-      <option value="sports_and_leisure">Sports and leisure</option>
+      <option value="sport_and_leisure">Sports and leisure</option>
       <option value="music">Music</option>
       <option value="geography">Geography</option>
     </select>
