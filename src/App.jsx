@@ -29,6 +29,7 @@ export default function App() {
           onSetStartMenuOpen={setStartMenuOpen}
           onSetQuestionBoxOpen={setQuestionBoxOpen}
           questionAnswer={questionAnswer}
+          onSetCategory={setCategory}
         />
       ) : (
         ""

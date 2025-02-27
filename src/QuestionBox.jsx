@@ -5,12 +5,16 @@ export function QuestionBox({
   questionAnswer,
   onSetStartMenuOpen,
   onSetQuestionBoxOpen,
+  onSetCategory,
 }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [IncorrectAnswer, setIncorrectAnswer] = useState(false);
 
   QuestionBox.propTypes = {
     questionAnswer: PropTypes.array.isRequired,
+    onSetStartMenuOpen: PropTypes.func.isRequired,
+    onSetQuestionBoxOpen: PropTypes.func.isRequired,
+    onSetCategory: PropTypes.func.isRequired,
   };
 
   const currentQuestion = questionAnswer[currentQuestionIndex];
@@ -43,6 +47,7 @@ export function QuestionBox({
   function endQuiz() {
     onSetStartMenuOpen((prev) => !prev);
     onSetQuestionBoxOpen((prev) => !prev);
+    onSetCategory(() => "ERROR");
   }
 
   return (

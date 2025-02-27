@@ -45,6 +45,10 @@ export function StartMenu({
         <option value="sport_and_leisure">Sports and leisure</option>
         <option value="music">Music</option>
         <option value="geography">Geography</option>
+        <option value="society_and_culture">Society and culture</option>
+        <option value="art_and_literature">Art and literature</option>
+        <option value="film_and_tv">Film and television</option>
+        <option value="food_and_drink">Food and drink</option>
       </select>
     </div>
   );
