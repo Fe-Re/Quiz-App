@@ -5,6 +5,8 @@ export function StartMenu({
   onSetStartMenuOpen,
   onSetQuestionBoxOpen,
   category,
+  onSetDifficulty,
+  difficulty,
 }) {
   function changeCategory(selection) {
     onSetCategory(selection);
@@ -17,11 +19,17 @@ export function StartMenu({
     questionBoxOpen: PropTypes.bool.isRequired,
     onSetQuestionBoxOpen: PropTypes.func.isRequired,
     category: PropTypes.string.isRequired,
+    onSetDifficulty: PropTypes.func.isRequired,
+    difficulty: PropTypes.string.isRequired,
   };
 
   function startQuiz() {
-    if (category === "ERROR") {
+    if (category === "ERROR" && difficulty === "ERROR") {
+      alert("Please select a category and a difficulty");
+    } else if (category === "ERROR") {
       alert("Please select a category");
+    } else if (difficulty === "ERROR") {
+      alert("Please select a difficulty");
     } else {
       onSetStartMenuOpen((prev) => !prev);
       onSetQuestionBoxOpen((prev) => !prev);
@@ -49,6 +57,16 @@ export function StartMenu({
         <option value="art_and_literature">Art and literature</option>
         <option value="film_and_tv">Film and television</option>
         <option value="food_and_drink">Food and drink</option>
+      </select>
+      <select
+        onChange={(event) => onSetDifficulty(event.target.value)}
+        className="difficulty-select"
+      >
+        <option value="ERROR">Select a difficulty</option>
+        <option value="">Random</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
       </select>
     </div>
   );

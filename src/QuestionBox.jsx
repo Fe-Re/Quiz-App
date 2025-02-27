@@ -15,6 +15,7 @@ export function QuestionBox({
     onSetStartMenuOpen: PropTypes.func.isRequired,
     onSetQuestionBoxOpen: PropTypes.func.isRequired,
     onSetCategory: PropTypes.func.isRequired,
+    difficulty: PropTypes.string.isRequired,
   };
 
   const currentQuestion = questionAnswer[currentQuestionIndex];
@@ -58,6 +59,12 @@ export function QuestionBox({
             ? currentQuestion.category.toUpperCase().replace(/_/g, " ")
             : "Lade Kategorie..."}
         </h2>
+        <h3>
+          {currentQuestion
+            ? currentQuestion.difficulty.charAt(0).toUpperCase() +
+              currentQuestion.difficulty.slice(1)
+            : "Lade Schwierigkeitsgrad..."}
+        </h3>
         <div className="question">
           {currentQuestion ? currentQuestion.question.text : "Lade Frage..."}
         </div>
