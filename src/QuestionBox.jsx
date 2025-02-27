@@ -65,6 +65,9 @@ export function QuestionBox({
               currentQuestion.difficulty.slice(1)
             : "Lade Schwierigkeitsgrad..."}
         </h3>
+        <p>
+          Question {currentQuestionIndex + 1} of {questionAnswer.length}
+        </p>
         <div className="question">
           {currentQuestion ? currentQuestion.question.text : "Lade Frage..."}
         </div>
