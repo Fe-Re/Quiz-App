@@ -39,9 +39,7 @@ export function StartMenu({
   return (
     <div className="start-menu">
       <h1>Quiz-App</h1>
-      <div className="start-btn" onClick={startQuiz}>
-        START
-      </div>
+
       <select
         onChange={(event) => changeCategory(event.target.value)}
         className="category-select"
@@ -68,6 +66,9 @@ export function StartMenu({
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
+      <div className="start-btn" onClick={startQuiz}>
+        START
+      </div>
     </div>
   );
 }

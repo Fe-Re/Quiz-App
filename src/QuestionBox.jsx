@@ -9,6 +9,7 @@ export function QuestionBox({
 }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [IncorrectAnswer, setIncorrectAnswer] = useState(false);
+  const [showResult, setShowResult] = useState(false);
 
   QuestionBox.propTypes = {
     questionAnswer: PropTypes.array.isRequired,
@@ -40,8 +41,10 @@ export function QuestionBox({
         (prevIndex) => (prevIndex + 1) % (questionAnswer.length || 1)
       );
       setIncorrectAnswer(false);
+      setShowResult(true);
     } else {
       setIncorrectAnswer(true);
+      setShowResult(true);
     }
   }
 
@@ -53,7 +56,7 @@ export function QuestionBox({
 
   return (
     <>
-      <div className="questionBox">
+      <div className="question-box">
         <h2 className="category">
           {currentQuestion
             ? currentQuestion.category.toUpperCase().replace(/_/g, " ")
@@ -71,27 +74,33 @@ export function QuestionBox({
         <div className="question">
           {currentQuestion ? currentQuestion.question.text : "Lade Frage..."}
         </div>
-      </div>
-      <div className="answers">
-        {shuffledAnswers.map((answerOption, index) => (
-          <div
-            className="answer"
-            key={index}
-            onClick={() => handleAnswerClick(answerOption)}
-            style={{
-              border: "1px solid black",
-              padding: "8px",
-              margin: "4px",
-              cursor: "pointer",
-            }}
-          >
-            {answerOption}
-          </div>
-        ))}
-        {IncorrectAnswer && <p style={{ color: "red" }}>Incorrect answer</p>}
-      </div>
-      <div className="end-btn" onClick={endQuiz}>
-        End
+        <div className="answers">
+          {shuffledAnswers.map((answerOption, index) => (
+            <div
+              className="answer"
+              key={index}
+              onClick={() => handleAnswerClick(answerOption)}
+              style={{
+                border: "1px solid black",
+                padding: "8px",
+                margin: "4px",
+                cursor: "pointer",
+              }}
+            >
+              {answerOption}
+            </div>
+          ))}
+        </div>
+        {showResult ? (
+          <p style={IncorrectAnswer ? { color: "red" } : { color: "Green" }}>
+            Your Answer was {IncorrectAnswer ? "Incorrect..." : "Correct!"}{" "}
+          </p>
+        ) : (
+          ""
+        )}
+        <div className="end-btn" onClick={endQuiz}>
+          End
+        </div>
       </div>
     </>
   );
